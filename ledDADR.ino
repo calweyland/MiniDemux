@@ -79,7 +79,6 @@ void write_to_display(int display, int dig) {
         pin = i+2;
 
         value = bitRead(dig, i) ? HIGH : LOW;
-        print
         digitalWrite(pin, value);
     }
 }
@@ -92,8 +91,4 @@ void deselect_all_displays() {
 
 boolean is_pin_pressed(int pin) {
     return digitalRead(pin) == HIGH;
-}
-
-int increment_addr(int n) {
-
 }
