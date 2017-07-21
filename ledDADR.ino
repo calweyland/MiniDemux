@@ -26,40 +26,19 @@ void setup() {
 }
 
 void loop() {
-    if (digitalRead(10) == HIGH) { //if the up button is pressed
-        addr++;
-
-        if (addr > 512) {
-            addr = 1;
-        } else if (addr < 1) {
-            addr = 512;
-        }
-
+    if (is_pin_pressed(10)) { //if the up button is pressed
+        addr = (addr + 1) % 512;
         en = 1;
         delay(70);
     }
-    if (digitalRead(12) == HIGH) { //if the fine up button is pressed
-        addr++;
-
-        if (addr > 512) {
-            addr = 1;
-        } else if (addr < 1) {
-            addr = 512;
-        }
-
+    if (is_pin_pressed(12)) { //if the fine up button is pressed
+        addr = (addr + 1) % 512;
         en = 1;
         delay(200);
     }
 
-    if (digitalRead(13) == HIGH) {// if the down button is pressed
-        addr--;
-
-        if (addr > 512) {
-            addr = 1;
-        } else if (addr < 1) {
-            addr = 512;
-        }
-
+    if (is_pin_pressed(13)) {// if the down button is pressed
+        addr = ((addr - 1) % 512 + 512) % 512;
         en = 1;
         delay(70);
     }
@@ -109,4 +88,12 @@ void deselect_all_displays() {
     digitalWrite(6, HIGH);
     digitalWrite(7, HIGH);
     digitalWrite(8, HIGH);
+}
+
+boolean is_pin_pressed(int pin) {
+    return digitalRead(pin) == HIGH;
+}
+
+int increment_addr(int n) {
+
 }
