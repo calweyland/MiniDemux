@@ -26,7 +26,7 @@ void setup() {
 }
 
 void loop() {
-    if (digitalRead(11) == HIGH;) { //if the up button is pressed
+    if (digitalRead(10) == HIGH;) { //if the up button is pressed
         addr = (addr + 1) % 512;
         en = 1;
         delay(70);
@@ -87,10 +87,4 @@ void deselect_all_displays() {
     digitalWrite(6, HIGH);
     digitalWrite(7, HIGH);
     digitalWrite(8, HIGH);
-}
-
-
-
-int increment_addr(int n) {
-
 }
