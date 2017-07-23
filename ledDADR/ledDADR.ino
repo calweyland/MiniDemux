@@ -22,6 +22,7 @@ void setup() {
     pinMode(10, INPUT); //up button
     pinMode(13, INPUT); //up button
     pinMode(12, INPUT); //fine up button
+    serial.begin(9600);
 
 }
 
@@ -84,7 +85,7 @@ void write_to_display(int display, int dig) {
         pin = i+2;
 
         value = bitRead(dig, i) ? HIGH : LOW;
-        Serial.print("bit "+i+" of "+dig+": "value);
+        Serial.print(value);
         digitalWrite(pin, value);
     }
 }
