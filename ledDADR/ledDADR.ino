@@ -46,14 +46,10 @@ void loop() {
     if (en == 1) { //begin the ritual of writing to the displays
         if (ondisplay != addr) { //is the address already on the display?
             //and now some maths
-            Serial.print("addr: " + addr);
 
             dig1 = addr/100;
-            Serial.print(dig1);
             dig2 = addr%100/10;
-            Serial.print(dig2);
             dig3 = addr%10;
-            Serial.print(dig3);
 
             write_to_display(1, dig1);
 
@@ -83,8 +79,7 @@ void write_to_display(int display, int dig) {
     for (int i = 0; i < 3; i++) {
         pin = i+2;
 
-        value = bitRead(dig, i) ? HIGH : LOW;
-        Serial.print("bit "+i+" of "+dig+": "value);
+        value = bitRead(dig, 3-i) ? HIGH : LOW;
         digitalWrite(pin, value);
     }
 }
