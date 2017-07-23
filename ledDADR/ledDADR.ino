@@ -27,36 +27,21 @@ void setup() {
 
 void loop() {
     if (digitalRead(10) == HIGH) { //if the up button is pressed
-        addr++;
-        if (addr > 512) {
-            addr = 1;
-        } else if (addr < 1) {
-            addr = 512;
-        }
+        addr = (addr + 1) % 512;
         en = 1;
         delay(70);
     }
     if (digitalRead(12) == HIGH) { //if the fine up button is pressed
-        addr++;
-        if (addr > 512) {
-            addr = 1;
-        } else if (addr < 1) {
-            addr = 512;
-        }
+        addr = (addr + 1) % 512;
         en = 1;
         delay(200);
     }
 
     if (digitalRead(13) == HIGH) {// if the down button is pressed
-        addr--;
-        if (addr > 512) {
-            addr = 1;
-        } else if (addr < 1) {
-            addr = 512;
-        }
+        addr = ((addr - 1) % 512 + 512) % 512;
         en = 1;
         delay(70);
-}
+    }
 
     if (en == 1) { //begin the ritual of writing to the displays
         if (ondisplay != addr) { //is the address already on the display?
@@ -91,10 +76,10 @@ void write_to_display(int display, int dig) {
     int pin;
     int value;
     Serial.print('writing...');
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 4; i++) {
         pin = i+2;
 
-        value = bitRead(dig, 3-i) ? HIGH : LOW;
+        value = bitRead(dig, i) ? HIGH : LOW;
         digitalWrite(pin, value);
     }
 }
