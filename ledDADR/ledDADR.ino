@@ -22,7 +22,6 @@ void setup() {
     pinMode(10, INPUT); //up button
     pinMode(13, INPUT); //up button
     pinMode(12, INPUT); //fine up button
-    serial.begin(9600);
 
 }
 
